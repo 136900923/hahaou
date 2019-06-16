@@ -112,10 +112,12 @@ public class CurrencyConvert {
         }
     }
 
+    /**
      * 人民币元转换为以逗号分隔
      *
      * 例如：5000.00，转换后是5,000.00
      *
+     * @param yuan
      * @return
      */
     public static String formatYuan2CommaYuan(Long yuan) {
