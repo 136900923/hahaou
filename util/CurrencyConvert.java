@@ -14,6 +14,7 @@ public class CurrencyConvert {
 
     final static DecimalFormat NF_FEN = new DecimalFormat("##");
     final static DecimalFormat NF_YUAN = new DecimalFormat("##0.00");
+    final static DecimalFormat NF_COMMA_YUAN = new DecimalFormat("#,###.00");
     public static final String REGEX_MONEY_FEN = "^-?[0-9]{1}\\d*$";
     public static final String ZERO = "0.00";
 
@@ -109,6 +110,40 @@ public class CurrencyConvert {
         } else {
             return new BigDecimal(yuan).multiply(new BigDecimal("100")).longValue();
         }
+    }
+
+     * 人民币元转换为以逗号分隔
+     *
+     * 例如：5000.00，转换后是5,000.00
+     *
+     * @return
+     */
+    public static String formatYuan2CommaYuan(Long yuan) {
+        String result = null;
+        if (yuan == null) {
+            return "0.00";
+        } else {
+            result = NF_COMMA_YUAN.format(yuan);
+        }
+        return result;
+    }
+
+    /**
+     * 人民币分转换为以逗号分隔
+     *
+     * 例如：500000分，转换后是5,000.00
+     *
+     * @param fen
+     * @return
+     */
+    public static String formatFen2CommaYuan(String fen) {
+        String result = null;
+        if (StringUtils.isBlank(fen) || "null".equals(fen)) {
+            return "0.00";
+        } else {
+            result = NF_COMMA_YUAN.format(moneyFen2Yuan(fen));
+        }
+        return result;
     }
 
     public static void main(String[] args) {
