@@ -30,7 +30,15 @@ public class CurrencyConvert {
 
     public static String formatYuan2Str(Long yuan) {
         if (yuan == null) {
-            return null;
+            return ZERO;
+        } else {
+            return NF_YUAN.format(yuan);
+        }
+    }
+
+    public static String formatYuan2Str(String yuan) {
+        if (yuan == null) {
+            return ZERO;
         } else {
             return NF_YUAN.format(yuan);
         }
@@ -63,7 +71,7 @@ public class CurrencyConvert {
 //        LOGGER.info("fen : {}", fen);
         String result = null;
         if (StringUtils.isBlank(fen) || "null".equals(fen)) {
-            return "0.00";
+            return ZERO;
         } else {
             result = NF_YUAN.format(moneyFen2Yuan(fen));
         }
@@ -123,7 +131,7 @@ public class CurrencyConvert {
     public static String formatYuan2CommaYuan(Long yuan) {
         String result = null;
         if (yuan == null) {
-            return "0.00";
+            return ZERO;
         } else {
             result = NF_COMMA_YUAN.format(yuan);
         }
@@ -141,9 +149,15 @@ public class CurrencyConvert {
     public static String formatFen2CommaYuan(String fen) {
         String result = null;
         if (StringUtils.isBlank(fen) || "null".equals(fen)) {
-            return "0.00";
+            return ZERO;
         } else {
-            result = NF_COMMA_YUAN.format(moneyFen2Yuan(fen));
+            long fenLong = Long.parseLong(fen);
+//            LOGGER.info("fenLong : {}", fenLong);
+            if (fenLong > 100L) {
+                result = NF_COMMA_YUAN.format(moneyFen2Yuan(fen));
+            } else {
+                result = NF_YUAN.format(moneyFen2Yuan(fen));
+            }
         }
         return result;
     }
