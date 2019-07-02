@@ -138,6 +138,17 @@ public class CurrencyConvert {
         return result;
     }
 
+    public static String formatStrYuan2CommaYuan(String yuan) {
+//        LOGGER.info("yuan : {}", yuan);
+        String result = null;
+        if (yuan == null || yuan.equals(ZERO)) {
+            return ZERO;
+        } else {
+            result = NF_COMMA_YUAN.format(new BigDecimal(yuan));
+        }
+        return result;
+    }
+
     /**
      * 人民币分转换为以逗号分隔
      *
