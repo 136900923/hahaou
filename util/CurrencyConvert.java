@@ -141,7 +141,7 @@ public class CurrencyConvert {
     public static String formatStrYuan2CommaYuan(String yuan) {
 //        LOGGER.info("yuan : {}", yuan);
         String result = null;
-        if (yuan == null || yuan.equals(ZERO)) {
+        if (yuan == null || yuan.equals(ZERO) || StringUtils.isBlank(yuan)) {
             return ZERO;
         } else {
             result = NF_COMMA_YUAN.format(new BigDecimal(yuan));
