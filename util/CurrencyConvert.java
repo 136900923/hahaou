@@ -144,7 +144,13 @@ public class CurrencyConvert {
         if (yuan == null || yuan.equals(ZERO) || StringUtils.isBlank(yuan)) {
             return ZERO;
         } else {
-            result = NF_COMMA_YUAN.format(new BigDecimal(yuan));
+            Long fen = moneyYuan2FenLong(yuan);
+            if (fen > 100L) {
+                result = NF_COMMA_YUAN.format(moneyFen2Yuan(String.valueOf(fen)));
+            } else {
+                result = NF_YUAN.format(moneyFen2Yuan(String.valueOf(fen)));
+            }
+
         }
         return result;
     }
@@ -179,7 +185,8 @@ public class CurrencyConvert {
 //        String s = "0.00";
 //        System.out.println(moneyYuan2FenLong(s));
 
-        Long yuan = 160L;
-        System.out.println(formatYuan2Str(yuan));
+//        Long yuan = 160L;
+//        System.out.println(formatStrYuan2CommaYuan("0.26"));
+//        System.out.println(moneyYuan2FenLong("0.26"));
     }
 }
