@@ -1,0 +1,16 @@
+<!-- 跨域过滤器 -->
+    <filter>
+        <filter-name>CorsFilter</filter-name>
+        <filter-class>com.up72.wlh.util.CorsFilter</filter-class>
+        <!-- 以下参数值用于优化百度编辑器上传 -->
+        <init-param>
+            <param-name>cors.allowed.headers</param-name>
+            <param-value>X_Requested_With</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CorsFilter</filter-name>
+        <url-pattern>/component/upload2/*</url-pattern>
+        <url-pattern>/scripts/ueditor/jsp/controller.jsp</url-pattern>
+        <url-pattern>/jsp/api/wayBill/doGetInfos.jsp</url-pattern>
+    </filter-mapping>
