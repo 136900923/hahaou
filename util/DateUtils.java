@@ -19,4 +19,14 @@ public abstract class DateUtils {
         SimpleDateFormat sdf = new SimpleDateFormat(YYYY_MM_DD_FORMAT);
         return sdf.format(new Date());
     }
+
+    /**
+     * 传入日期转换为 年-月-日 日期格式
+     * @param date 传入日期
+     * @return 转换后的日期
+     */
+    public static String date2yyyy_MM_dd(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat(YYYY_MM_DD_FORMAT);
+        return sdf.format(date);
+    }
 }
